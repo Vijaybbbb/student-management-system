@@ -20,12 +20,18 @@ sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 echo "==================================="
+echo "Installing Git"
+echo "==================================="
+
+sudo apt install git -y
+
+echo "==================================="
 echo "Cloning Repository"
 echo "==================================="
 
-# Clone your repository (replace with your repo URL)
-# git clone <your-repo-url>
-# cd <your-repo-name>
+cd ~
+git clone https://github.com/Vijaybbbb/student-management-system.git
+cd student-management-system
 
 echo "==================================="
 echo "Setting up Environment Variables"

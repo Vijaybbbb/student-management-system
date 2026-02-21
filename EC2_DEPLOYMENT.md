@@ -20,6 +20,12 @@
 
 ## Deployment Steps
 
+### Fix PEM File Permissions (Required)
+
+```bash
+chmod 400 your-key.pem
+```
+
 ### Option 1: Manual Deployment
 
 1. **Connect to EC2**
@@ -42,15 +48,15 @@
    sudo chmod +x /usr/local/bin/docker-compose
    ```
 
-4. **Upload Project Files**
+4. **Clone Repository from GitHub**
    ```bash
-   # From your local machine
-   scp -i your-key.pem -r "Student Management System" ubuntu@your-ec2-ip:~/
+   sudo apt install git -y
+   git clone https://github.com/Vijaybbbb/student-management-system.git
+   cd student-management-system
    ```
 
 5. **Create .env file on EC2**
    ```bash
-   cd "Student Management System"
    nano .env
    ```
    Add:
@@ -65,21 +71,30 @@
    sudo docker-compose up -d --build
    ```
 
-### Option 2: Using Deployment Script
+### Option 2: Using Deployment Script (Recommended)
 
-1. **Upload files to EC2**
-   ```bash
-   scp -i your-key.pem -r "Student Management System" ubuntu@your-ec2-ip:~/
-   ```
-
-2. **SSH into EC2**
+1. **SSH into EC2**
    ```bash
    ssh -i your-key.pem ubuntu@your-ec2-ip
    ```
 
-3. **Run deployment script**
+2. **Download and run deployment script**
    ```bash
-   cd "Student Management System"
+   curl -O https://raw.githubusercontent.com/Vijaybbbb/student-management-system/main/deploy-ec2.sh
+   chmod +x deploy-ec2.sh
+   ./deploy-ec2.sh
+   ```
+
+   Or manually:
+   ```bash
+   # Install Git
+   sudo apt install git -y
+   
+   # Clone repository
+   git clone https://github.com/Vijaybbbb/student-management-system.git
+   cd student-management-system
+   
+   # Run deployment script
    chmod +x deploy-ec2.sh
    ./deploy-ec2.sh
    ```
